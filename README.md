@@ -1,4 +1,4 @@
-<h1 align="center">Bienvenue sur le readme de Wagtail_statis_website 👋</h1>
+<h1 align="center">Bienvenue sur le readme de Wagtail_static_website 👋</h1>
 <p align="center">
   <a href="https://twitter.com/LaurentJouron">
     <img alt="Twitter: LaurentJouron" 
@@ -17,11 +17,11 @@ ___________
 <table>
   <tr>
     <td align="center">
-      <a href=https://www.python.org/">
+      <a href="https://www.python.org/">
         <img width="200px"
           src="https://www.python.org/static/img/python-logo.png" /><br />
         <sub><b>Téléchargez Python</b></sub></a><br />
-      <a href=https://www.python.org/" title="Téléchargez Python" ></a> 
+      <a href="https://www.python.org/" title="Téléchargez Python" ></a> 
     </td>
     <td align="center">
       <a href="https://www.djangoproject.com/">
@@ -59,7 +59,7 @@ ___________
 <h1 align="center">Installation du site </h1>
 
 Pour commencer il faut cloner le projet grâce à l'url suivante :
-  * ``git clone https://github.com/LaurentJouron/Wagtail_statis_website.git``
+  * ``git clone https://github.com/LaurentJouron/Wagtail_static_website.git``
 
 Il faut se déplacer dans le dossier:
   * ``cd Wagtail_statis_website``
@@ -90,8 +90,8 @@ ___________
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlW-w7O7g3hQTw8qcIAy3LCRhiHg5tUPfvVg&usqp=CAU"
           width="100px;"/><br />
         <sub><b>Laurent Jouron</b></sub></a><br />
-      <a href="https://openclassrooms.com/fr/" title="Étudiant">🈸</a>
-      <a href="https://github.com/LaurentJouron/Books-online" title="Codeur de l'application">💻</a>
+      <a href="https://laurentjouron.github.io/" title="Étudiant">🈸</a>
+      <a href="https://github.com/LaurentJouron/Wagtail_static_website" title="Codeur de l'application">💻</a>
     </td>
   </tr>
 </table>
