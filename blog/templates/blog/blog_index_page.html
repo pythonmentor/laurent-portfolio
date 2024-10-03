@@ -19,13 +19,14 @@
 
   {% if page.subscribe_url %}
     <form class="flex flex-col py-12 sm:flex-row" method="POST" action="{{ page.subscribe_url }}">
-      <input type="email" id="subscribe" name="email" placeholder="Drop that email here…"
+      <input type="email" id="subscribe" name="email" placeholder="Saisissez votre email ici..."
             class="w-full border border-primary bg-grey-lightest px-5 py-4 font-body font-light text-primary placeholder-primary transition-colors focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary dark:border-secondary sm:w-1/2"/>
       <button type="submit" class="mt-5 bg-secondary px-10 py-4 font-body text-xl font-semibold text-white hover:bg-green sm:mt-0 md:text-2xl">
-        Subscribe
+        S'inscrire
       </button>
     </form>
   {% endif %}
+
   <div class="pt-8 lg:pt-12">
     {% for post in posts %}
       {% include 'includes/blog_preview.html' with post=post %}
@@ -38,7 +39,7 @@
       {% if posts.has_previous %}
         <a href="?page={{ posts.previous_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
           <i class="bx bx-left-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
-          Prev
+          Précedent
         </a>
       {% endif %}
 
@@ -56,7 +57,7 @@
 
       {% if posts.has_next %}
         <a href="?page={{ posts.next_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
-          Next
+          Suivant
           <i class="bx bx-right-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
         </a>
       {% endif %}
@@ -64,3 +65,4 @@
     {% endif %}
   </div>
 {% endblock content %}
+

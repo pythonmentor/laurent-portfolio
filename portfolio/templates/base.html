@@ -41,24 +41,26 @@
         {% block extra_css %}{% endblock %}
     </head>
 
-    <body x-data="global()" x-init="themeInit()" :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''" class="dark:bg-primary" >
+    <body x-data="global()" x-init="themeInit()" :class="isMobileMenuOpen ? 'max-h-screen overflow-hidden relative' : ''" class="dark:bg-primary">
         {% wagtailuserbar %}
             <div id="main">
                 <div class="container mx-auto">
-
                     {% block navigation %}
                         {% include 'includes/navigation.html' %}
                     {% endblock navigation %}
 
-                    {% block content %}{% endblock %}
+                    <div id="main">
+                        <div class="container mx-auto">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
 
                     {% block footer %}
                         {% include 'includes/footer.html' %}
                     {% endblock footer %}
-
                 </div>
             </div>
-        {# Global javascript #}
+
         <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
         {% block extra_js %}{% endblock %}
     </body>
