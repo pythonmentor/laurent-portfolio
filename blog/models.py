@@ -1,14 +1,37 @@
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
-from wagtail.models import Page, Orderable
+from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
-from wagtail import blocks
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page, Orderable
 from wagtail.snippets.models import register_snippet
+from wagtail.images.blocks import ImageChooserBlock
 
 from modelcluster.fields import ParentalKey
+
+
+class CodeBlock(blocks.StructBlock):
+    language = blocks.ChoiceBlock(
+        choices=[
+            ("python", "Python"),
+            ("shell", "Shell"),
+        ],
+        label="Language code",
+    )
+    code = blocks.TextBlock(label="Source code")
+
+    class Meta:
+        template = "blocks/code_block.html"
+        icon = "code_block"
+        label = "Code block"
+
+
+class ResultBlock(blocks.TextBlock):
+    class Meta:
+        template = "blocks/result_block.html"
+        icon = "doc-full-inverse"
+        label = "Result block"
 
 
 @register_snippet
@@ -140,6 +163,14 @@ class BlogPage(Page):
                     ],
                     template="blocks/twitter_block.html",
                 ),
+            ),
+            (
+                "code_block",
+                CodeBlock(),
+            ),
+            (
+                "result_block",
+                ResultBlock(),
             ),
         ]
     )

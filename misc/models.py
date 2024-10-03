@@ -7,6 +7,29 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.admin.panels import FieldPanel
 
 
+class CodeBlock(blocks.StructBlock):
+    language = blocks.ChoiceBlock(
+        choices=[
+            ("python", "Python"),
+            ("shell", "Shell"),
+        ],
+        label="Language code",
+    )
+    code = blocks.TextBlock(label="Source code")
+
+    class Meta:
+        template = "blocks/code_block.html"
+        icon = "code_block"
+        label = "Code block"
+
+
+class ResultBlock(blocks.TextBlock):
+    class Meta:
+        template = "blocks/result_block.html"
+        icon = "doc-full-inverse"
+        label = "Result block"
+
+
 class MiscPage(Page):
 
     html_subtitle = models.TextField(
@@ -55,6 +78,14 @@ class MiscPage(Page):
                     ],
                     template="blocks/twitter_block.html",
                 ),
+            ),
+            (
+                "code_block",
+                CodeBlock(),
+            ),
+            (
+                "result_block",
+                ResultBlock(),
             ),
         ]
     )

@@ -1,0 +1,8 @@
+<div class="result-tab">
+    <h4>{{ self.title }}</h4>
+    <div class="tab-content">
+        {% for block in self.content %}
+            {{ block.render }}
+        {% endfor %}
+    </div>
+</div>
