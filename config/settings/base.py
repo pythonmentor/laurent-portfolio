@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "contact",
     "search",
     "site_settings",
+    "project",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
@@ -63,7 +64,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-ROOT_URLCONF = "portfolio.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -84,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "portfolio.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
@@ -166,7 +167,7 @@ STORAGES = {
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "portfolio"
+WAGTAIL_SITE_NAME = "config"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
