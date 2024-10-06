@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="py-16 lg:py-20">
+  <div>
+    <img src="{% static 'img/icon-project.png' %}" alt="icon project"/>
+  </div>
+
+  <h1 class="pt-5 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl">
+    {{ page.title }}
+  </h1>
+
+  <div class="pt-3 sm:w-3/4">
+    <p class="font-body text-xl font-light text-primary dark:text-white">
+      {{ page.summary }}
+    </p>
+  </div>
+
+  <div class="pt-8 lg:pt-12">
+    {% for post in posts %}
+      {% include 'includes/project_preview.html' with post=post %}
+    {% endfor %}
+  </div>
+
+  {% if posts.paginator.num_pages > 1 %}
+    <div class="flex pt-8 lg:pt-16">
+
+      {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+          <i class="bx bx-left-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
+          Précedent
+        </a>
+      {% endif %}
+
+      {% for page_num in posts.paginator.page_range %}
+        {% if posts.number == page_num %}
+          <a href="?page={{ page_num }}" class="ml-3 cursor-pointer border-2 border-secondary px-3 py-1 font-body font-medium text-secondary">
+            {{ page_num}}
+          </a>
+        {% else %}
+          <a href="?page={{ page_num }}" class="ml-3 cursor-pointer border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+            {{ page_num}}
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+          Suivant
+          <i class="bx bx-right-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
+        </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+{% endblock content %}
+

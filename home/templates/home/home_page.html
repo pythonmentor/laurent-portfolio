@@ -58,10 +58,17 @@
             Mes Projets
         </h3>
     </div>
+</div>
+
+
+
     <div>
         <a href=" / " class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
             <span class="w-9/10 pr-8">
                 <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
+                    {% for post in project_posts %}
+                        {% include 'includes/project_preview.html' with post=post %}
+                    {% endfor %}
                     Python
                 </h4>
                 <p class="font-body font-light text-primary dark:text-white">
@@ -73,7 +80,7 @@
             </span>
         </a>
 
-        <a href=" / " class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
+        {% comment %} <a href=" / " class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
             <span class="w-9/10 pr-8">
                 <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
                     Django
@@ -113,6 +120,6 @@
             <span class="w-1/10">
             <img src="static/img/chevron-right.png" class="mx-auto" alt="chevron right" />
             </span>
-        </a>
+        </a> {% endcomment %}
     </div>
 {% endblock content %}

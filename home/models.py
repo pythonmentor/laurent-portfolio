@@ -57,7 +57,7 @@ class HomePage(Page):
 
     @property
     def button_text(self):
-        return self.cta_text if self.cta_text else "Read More"
+        return self.cta_text or "Read More"
 
     def get_context(self, request):
         context = super().get_context(request)

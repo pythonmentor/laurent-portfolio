@@ -17,11 +17,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='BlogIndexPage',
+            name='ProjectIndexPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('summary', models.TextField(blank=True, max_length=500)),
-                ('subscribe_url', models.URLField(blank=True)),
             ],
             options={
                 'abstract': False,
@@ -29,11 +28,11 @@ class Migration(migrations.Migration):
             bases=('wagtailcore.page',),
         ),
         migrations.CreateModel(
-            name='BlogPage',
+            name='ProjectPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('reading_time_in_minutes', models.IntegerField()),
-                ('body', wagtail.fields.StreamField([('content', 0), ('image', 1), ('quote', 2), ('output_block', 4), ('code_block', 7), ('result_block', 8)], block_lookup={0: ('wagtail.blocks.RichTextBlock', (), {'features': ['bold', 'italic', 'link', 'ol', 'ul', 'hr', 'h1', 'h2', 'h3'], 'template': 'blocks/richtext.html'}), 1: ('wagtail.images.blocks.ImageChooserBlock', (), {'template': 'blocks/image.html'}), 2: ('wagtail.blocks.BlockQuoteBlock', (), {'template': 'blocks/quote.html'}), 3: ('wagtail.blocks.CharBlock', (), {}), 4: ('wagtail.blocks.StructBlock', [[('text', 3)]], {'template': 'blocks/output_block.html'}), 5: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('python', 'Python'), ('shell', 'Shell')], 'label': 'Language code'}), 6: ('wagtail.blocks.TextBlock', (), {'label': 'Source code'}), 7: ('wagtail.blocks.StructBlock', [[('language', 5), ('code', 6)]], {}), 8: ('utils.models.UtilsResultBlock', (), {})})),
+                ('body', wagtail.fields.StreamField([('content', 0), ('image', 1), ('quote', 2), ('twitter_block', 4), ('code_block', 7), ('result_block', 8)], block_lookup={0: ('wagtail.blocks.RichTextBlock', (), {'features': ['bold', 'italic', 'link', 'ol', 'ul', 'hr', 'h1', 'h2', 'h3'], 'template': 'blocks/richtext.html'}), 1: ('wagtail.images.blocks.ImageChooserBlock', (), {'template': 'blocks/image.html'}), 2: ('wagtail.blocks.BlockQuoteBlock', (), {'template': 'blocks/quote.html'}), 3: ('wagtail.blocks.CharBlock', (), {}), 4: ('wagtail.blocks.StructBlock', [[('text', 3)]], {'template': 'blocks/twitter_block.html'}), 5: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('python', 'Python'), ('shell', 'Shell')], 'label': 'Language code'}), 6: ('wagtail.blocks.TextBlock', (), {'label': 'Source code'}), 7: ('wagtail.blocks.StructBlock', [[('language', 5), ('code', 6)]], {}), 8: ('utils.models.UtilsResultBlock', (), {})})),
             ],
             options={
                 'abstract': False,
@@ -41,12 +40,12 @@ class Migration(migrations.Migration):
             bases=('wagtailcore.page',),
         ),
         migrations.CreateModel(
-            name='BlogPageCategories',
+            name='ProjectPageCategories',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='utils.category')),
-                ('page', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='categories', to='blog.blogpage')),
+                ('page', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='categories', to='project.projectpage')),
+                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='utils.category')),
             ],
             options={
                 'ordering': ['sort_order'],

@@ -1,84 +1,19 @@
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
 from wagtail.models import Page, Orderable
-from wagtail.snippets.models import register_snippet
 from wagtail.images.blocks import ImageChooserBlock
-
 from modelcluster.fields import ParentalKey
 
-
-class CodeBlock(blocks.StructBlock):
-    language = blocks.ChoiceBlock(
-        choices=[
-            ("python", "Python"),
-            ("shell", "Shell"),
-        ],
-        label="Language code",
-    )
-    code = blocks.TextBlock(label="Source code")
-
-    class Meta:
-        template = "blocks/code_block.html"
-        icon = "code_block"
-        label = "Code block"
-
-
-class ResultBlock(blocks.TextBlock):
-    class Meta:
-        template = "blocks/result_block.html"
-        icon = "doc-full-inverse"
-        label = "Result block"
-
-
-@register_snippet
-class BlogCategory(models.Model):
-    name = models.CharField(max_length=255)
-    color = models.CharField(
-        choices=[
-            ("blue", "Blue"),
-            ("green", "Green"),
-            ("yellow", "Yellow"),
-            ("grey", "Grey"),
-            ("red", "Red"),
-            ("purple", "Purple"),
-            ("orange", "Orange"),
-            ("pink", "Pink"),
-            ("black", "Black"),
-            ("white", "White"),
-            ("brown", "Brown"),
-            ("teal", "Teal"),
-            ("cyan", "Cyan"),
-            ("lime", "Lime"),
-            ("amber", "Amber"),
-        ],
-        help_text="Background color",
-        default="grey",
-        max_length=6,
-    )
-
-    @property
-    def text_color(self):
-        if self.color == "grey":
-            return "blue-dark"
-        elif self.color == "yellow":
-            return "yellow-dark"
-        return self.color
-
-    class Meta:
-        verbose_name_plural = "blog categories"
-
-    def __str__(self):
-        return self.name
+from utils.models import UtilsCodeBlock, UtilsResultBlock
 
 
 class BlogPageCategories(Orderable):
     page = ParentalKey("blog.BlogPage", related_name="categories")
     category = models.ForeignKey(
-        "blog.BlogCategory",
+        "utils.Category",
         on_delete=models.CASCADE,
     )
 
@@ -159,18 +94,17 @@ class BlogPage(Page):
                 blocks.StructBlock(
                     [
                         ("text", blocks.CharBlock()),
-                        ("author", blocks.CharBlock()),
                     ],
                     template="blocks/twitter_block.html",
                 ),
             ),
             (
                 "code_block",
-                CodeBlock(),
+                UtilsCodeBlock(),
             ),
             (
                 "result_block",
-                ResultBlock(),
+                UtilsResultBlock(),
             ),
         ]
     )

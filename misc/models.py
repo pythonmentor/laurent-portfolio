@@ -6,28 +6,7 @@ from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.admin.panels import FieldPanel
 
-
-class CodeBlock(blocks.StructBlock):
-    language = blocks.ChoiceBlock(
-        choices=[
-            ("python", "Python"),
-            ("shell", "Shell"),
-        ],
-        label="Language code",
-    )
-    code = blocks.TextBlock(label="Source code")
-
-    class Meta:
-        template = "blocks/code_block.html"
-        icon = "code_block"
-        label = "Code block"
-
-
-class ResultBlock(blocks.TextBlock):
-    class Meta:
-        template = "blocks/result_block.html"
-        icon = "doc-full-inverse"
-        label = "Result block"
+from utils.models import UtilsCodeBlock, UtilsResultBlock
 
 
 class MiscPage(Page):
@@ -74,18 +53,17 @@ class MiscPage(Page):
                 blocks.StructBlock(
                     [
                         ("text", blocks.CharBlock()),
-                        ("author", blocks.CharBlock()),
                     ],
                     template="blocks/twitter_block.html",
                 ),
             ),
             (
                 "code_block",
-                CodeBlock(),
+                UtilsCodeBlock(),
             ),
             (
                 "result_block",
-                ResultBlock(),
+                UtilsResultBlock(),
             ),
         ]
     )
