@@ -49,7 +49,7 @@ ___________
         <img width="100px"
           src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747__340.png" /><br />
         <sub><b>CSS</b></sub></a><br />
-      <a href="https://developer.mozilla.org/fr/docs/Web/CSS" title="CSS" ></a> 
+      <a href="https://developer.mozilla.org/fr/docs/Web/CSS" title="CSS" ></a>
     </td>
   </tr>
 </table>
@@ -62,7 +62,7 @@ Pour commencer il faut cloner le projet grâce à l'url suivante :
   * ``git clone https://github.com/LaurentJouron/Wagtail_static_website.git``
 
 Il faut se déplacer dans le dossier:
-  * ``cd Wagtail_statis_website``
+  * ``cd Wagtail_static_website``
 
 Voici la procédure pour afficher la page d'accueil du site:
 

@@ -1,21 +1,29 @@
-<div class="border-b border-grey-lighter pt-10 pb-8">
-  {% for orderable in post.categories.all %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<div class="pt-2 pb-4">
+  {% for orderable in project.categories.all %}
     <span class="mb-4 inline-block rounded-full bg-{{ orderable.category.color }}-light px-2 py-1 font-body text-sm text-{{ orderable.category.text_color }}">
       {{ orderable.category.name }}
     </span>
   {% endfor %}
 
-  <a href="{{ post.url }}" class="block font-body text-lg font-semibold text-primary transition-colors hover:text-green dark:text-white dark:hover:text-secondary">
-    {{ post.title }}
-  </a>
-
-  <div class="flex items-center pt-4">
-    <p class="pr-2 font-body font-light text-primary dark:text-white">
-      {{ post.first_published_at|date:"d F Y"|title }}
-    </p>
-    <span class="font-body text-grey dark:text-white">//</span>
-    <p class="pl-2 font-body font-light text-primary dark:text-white">
-      ⏱️{{ post.reading_time_in_minutes }} min
-    </p>
+  <div class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
+    <span class="flex-1 pr-8">
+        <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
+            <a href="{{ project.url }}">{{ project.title }}</a>
+        </h4>
+        <p class="text-sm text-grey font-light">
+          <a href="{{ project.url }}">{{ project.first_published_at|date:"d F Y"|title }} // ⏱️ {{ project.reading_time_in_minutes }} min</a>
+        </p><br>
+        <p class="font-body font-light text-primary dark:text-white">
+          <a href="{{ project.url }}">{{ project.summary }}</a>
+        </p>
+    </span>
+    <div class="w-1/10 flex items-center justify-center">
+      <a href="{{ project.url }}">
+        <img src="{% static 'img/chevron-right.png' %}" style="height: 24px; width: 24px;" class="mx-auto" alt="chevron right" />
+      </a>
+    </div>
   </div>
 </div>
+

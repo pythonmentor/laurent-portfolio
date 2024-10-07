@@ -6,7 +6,11 @@ from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.admin.panels import FieldPanel
 
-from utils.models import UtilsCodeBlock, UtilsResultBlock
+from utils.models import (
+    UtilsCodeBlock,
+    UtilsResultBlock,
+    UtilsCustomRichTextBlock,
+)
 
 
 class MiscPage(Page):
@@ -21,20 +25,7 @@ class MiscPage(Page):
         [
             (
                 "content",
-                blocks.RichTextBlock(
-                    features=[
-                        "bold",
-                        "italic",
-                        "link",
-                        "ol",
-                        "ul",
-                        "hr",
-                        "h1",
-                        "h2",
-                        "h3",
-                    ],
-                    template="blocks/richtext.html",
-                ),
+                UtilsCustomRichTextBlock(),
             ),
             (
                 "image",

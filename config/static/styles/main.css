@@ -1,0 +1,110 @@
+/* Caroussel */
+:root {
+    /* --color-elements: #065a68; */
+    --color-elements: #00AAA1;
+    --size: clamp(10rem, 1rem + 40vmin, 30rem);
+    --gap: calc(var(--size) / 14);
+    --duration: 60s;
+    --scroll-start: 0;
+    --scroll-end: calc(-100% - var(--gap));
+}
+
+.caroussel {
+    display: grid;
+    align-content: center;
+    overflow: hidden;
+    gap: var(--gap);
+    width: 100%;
+    min-height: 100vh;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+}
+
+.marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll-x var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee__group {
+        animation-play-state: paused;
+    }
+}
+
+.marquee--vertical {
+    --mask-direction: to bottom;
+}
+
+.marquee--vertical,
+.marquee--vertical .marquee__group {
+    flex-direction: column;
+}
+
+.marquee--vertical .marquee__group {
+    animation-name: scroll-y;
+}
+
+.marquee--reverse .marquee__group {
+    animation-direction: reverse;
+    animation-delay: -3s;
+}
+
+@keyframes scroll-x {
+    from {
+        transform: translateX(var(--scroll-start));
+    }
+    to {
+        transform: translateX(var(--scroll-end));
+    }
+}
+  
+@keyframes scroll-y {
+    from {
+        transform: translateY(var(--scroll-start));
+    }
+    to {
+        transform: translateY(var(--scroll-end));
+    }
+}
+
+.marquee svg {
+    display: grid;
+    place-items: center;
+    width: calc(var(--size) - 40px);
+    fill: var(--color-elements);
+    aspect-ratio: 16/9;
+    padding: calc(var(--size) / 15);
+    margin-top: 15px;
+}
+
+.marquee svg {
+    width: calc(var(--size) / 2.5);
+    padding: calc(var(--size) / 20);
+    aspect-ratio: 16/9;
+    margin-top: 10px;
+}
+
+.marquee,
+.marquee__group {
+    gap: calc(var(--gap) / 2);
+}
+
+.marquee--vertical svg {
+    aspect-ratio: 1;
+    width: calc((var(--size) - 40px) / 1.5);
+    padding: calc((var(--size) - 40px) / 10);
+}
+

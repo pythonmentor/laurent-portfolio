@@ -4,6 +4,7 @@ from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
 from blog.models import BlogIndexPage, BlogPage
+from project.models import ProjectIndexPage, ProjectPage
 
 
 class HomePage(Page):
@@ -64,6 +65,12 @@ class HomePage(Page):
         context["blog_index"] = BlogIndexPage.objects.first()
         context["blog_posts"] = (
             BlogPage.objects.live()
+            .public()
+            .order_by("-first_published_at")[:3]
+        )
+        context["project_index"] = ProjectIndexPage.objects.first()
+        context["project_posts"] = (
+            ProjectPage.objects.live()
             .public()
             .order_by("-first_published_at")[:3]
         )

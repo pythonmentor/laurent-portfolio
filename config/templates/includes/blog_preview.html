@@ -1,4 +1,4 @@
-<div class="border-b border-grey-lighter pt-10 pb-8">
+<div class="border-b border-grey-lighter pt-5 pb-8">
   {% for orderable in post.categories.all %}
     <span class="mb-4 inline-block rounded-full bg-{{ orderable.category.color }}-light px-2 py-1 font-body text-sm text-{{ orderable.category.text_color }}">
       {{ orderable.category.name }}

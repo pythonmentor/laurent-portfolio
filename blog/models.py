@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
@@ -7,13 +8,17 @@ from wagtail.models import Page, Orderable
 from wagtail.images.blocks import ImageChooserBlock
 from modelcluster.fields import ParentalKey
 
-from utils.models import UtilsCodeBlock, UtilsResultBlock
+from utils.models import (
+    UtilsCodeBlock,
+    UtilsResultBlock,
+    UtilsCustomRichTextBlock,
+)
 
 
 class BlogPageCategories(Orderable):
     page = ParentalKey("blog.BlogPage", related_name="categories")
     category = models.ForeignKey(
-        "utils.Category",
+        "utils.UtilsCategory",
         on_delete=models.CASCADE,
     )
 
@@ -62,20 +67,7 @@ class BlogPage(Page):
         [
             (
                 "content",
-                blocks.RichTextBlock(
-                    features=[
-                        "bold",
-                        "italic",
-                        "link",
-                        "ol",
-                        "ul",
-                        "hr",
-                        "h1",
-                        "h2",
-                        "h3",
-                    ],
-                    template="blocks/richtext.html",
-                ),
+                UtilsCustomRichTextBlock(),
             ),
             (
                 "image",

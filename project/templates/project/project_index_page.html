@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="py-16 lg:py-20">
+<div class="py-8 lg:py-10">
   <div>
     <img src="{% static 'img/icon-project.png' %}" alt="icon project"/>
   </div>
@@ -17,17 +17,17 @@
     </p>
   </div>
 
-  <div class="pt-8 lg:pt-12">
-    {% for post in posts %}
-      {% include 'includes/project_preview.html' with post=post %}
+  <div class="pt-4 lg:pt-6">
+    {% for project in posts %}
+      {% include 'includes/project_preview.html' with project=project %}
     {% endfor %}
   </div>
 
-  {% if posts.paginator.num_pages > 1 %}
+  {% if project.paginator.num_pages > 1 %}
     <div class="flex pt-8 lg:pt-16">
 
-      {% if posts.has_previous %}
-        <a href="?page={{ posts.previous_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
+      {% if project.has_previous %}
+        <a href="?page={{ project.previous_page_number }}" class="group ml-3 flex cursor-pointer items-center border-2 border-primary px-3 py-1 font-body font-medium text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary">
           <i class="bx bx-left-arrow-alt ml-1 text-primary transition-colors group-hover:text-secondary dark:text-white"></i>
           Précedent
         </a>

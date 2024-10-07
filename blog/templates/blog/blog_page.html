@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="pt-16 lg:pt-20">
+<div class="pt-8 lg:pt-10">
   <div class="border-b border-grey-lighter pb-8 sm:pb-12">
     {% for orderable in page.categories.all %}
       <span class="mb-5 inline-block rounded-full bg-{{ orderable.category.color }}-light px-2 py-1 font-body text-sm text-{{ orderable.category.text_color }} sm:mb-8">

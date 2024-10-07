@@ -9,13 +9,17 @@ from wagtail.models import Page, Orderable
 from wagtail.images.blocks import ImageChooserBlock
 
 from modelcluster.fields import ParentalKey
-from utils.models import UtilsCodeBlock, UtilsResultBlock
+from utils.models import (
+    UtilsCodeBlock,
+    UtilsResultBlock,
+    UtilsCustomRichTextBlock,
+)
 
 
 class ProjectPageCategories(Orderable):
     page = ParentalKey("project.ProjectPage", related_name="categories")
     project = models.ForeignKey(
-        "utils.Category",
+        "utils.UtilsCategory",
         on_delete=models.CASCADE,
     )
 
@@ -57,25 +61,13 @@ class ProjectIndexPage(Page):
 class ProjectPage(Page):
     parent_page_types = ["project.ProjectIndexPage"]
 
+    summary = models.TextField(blank=True, max_length=500)
     reading_time_in_minutes = models.IntegerField()
     body = StreamField(
         [
             (
                 "content",
-                blocks.RichTextBlock(
-                    features=[
-                        "bold",
-                        "italic",
-                        "link",
-                        "ol",
-                        "ul",
-                        "hr",
-                        "h1",
-                        "h2",
-                        "h3",
-                    ],
-                    template="blocks/richtext.html",
-                ),
+                UtilsCustomRichTextBlock(),
             ),
             (
                 "image",
@@ -112,5 +104,6 @@ class ProjectPage(Page):
     content_panels = Page.content_panels + [
         InlinePanel("categories", label="Categories"),
         FieldPanel("reading_time_in_minutes"),
+        FieldPanel("summary"),
         FieldPanel("body"),
     ]

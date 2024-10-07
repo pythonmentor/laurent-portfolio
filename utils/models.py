@@ -28,7 +28,7 @@ class UtilsResultBlock(blocks.TextBlock):
 
 
 @register_snippet
-class Category(models.Model):
+class UtilsCategory(models.Model):
     name = models.CharField(max_length=255)
     color = models.CharField(
         choices=[
@@ -66,3 +66,21 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UtilsCustomRichTextBlock(blocks.RichTextBlock):
+    def __init__(self, **kwargs):
+        default_features = [
+            "bold",
+            "italic",
+            "link",
+            "ol",
+            "ul",
+            "hr",
+            "h1",
+            "h2",
+            "h3",
+        ]
+        kwargs.setdefault("features", default_features)
+        kwargs.setdefault("template", "blocks/richtext.html")
+        super().__init__(**kwargs)
