@@ -7,6 +7,9 @@ class UtilsCodeBlock(blocks.StructBlock):
     language = blocks.ChoiceBlock(
         choices=[
             ("python", "Python"),
+            ("css", "CSS"),
+            ("html", "HTML"),
+            ("javascript", "Javascript"),
             ("shell", "Shell"),
         ],
         label="Language code",
@@ -74,12 +77,15 @@ class UtilsCustomRichTextBlock(blocks.RichTextBlock):
             "bold",
             "italic",
             "link",
+            "document-link",
             "ol",
             "ul",
             "hr",
             "h1",
             "h2",
             "h3",
+            "center",
+            "justify",
         ]
         kwargs.setdefault("features", default_features)
         kwargs.setdefault("template", "blocks/richtext.html")

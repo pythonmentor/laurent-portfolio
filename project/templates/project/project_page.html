@@ -3,8 +3,8 @@
 
 {% block content %}
 
-<div class="pt-16 lg:pt-20">
-  <div class="border-b border-grey-lighter pb-8 sm:pb-12">
+<div class="pt-8 lg:pt-10">
+  <div class="border-b border-grey-lighter pb-8 sm:pb-6">
     {% for orderable in page.categories.all %}
       <span class="mb-5 inline-block rounded-full bg-{{ orderable.category.color }}-light px-2 py-1 font-body text-sm text-{{ orderable.category.text_color }} sm:mb-8">
         {{ orderable.category.name }}
@@ -15,15 +15,11 @@
     </h2>
     <div class="flex items-center pt-5 sm:pt-8">
       <p class="pr-2 font-body font-light text-primary dark:text-white">
-        {{ page.first_published_at|date:"d F Y"|title }}
-      </p>
-      <span class="vdark:text-white font-body text-grey">//</span>
-      <p class="pl-2 font-body font-light text-primary dark:text-white">
-        ⏱️ {{ page.reading_time_in_minutes }} min
+        {{ page.first_published_at|date:"d F Y"|title }} // ⏱️ {{ page.reading_time_in_minutes }} min
       </p>
     </div>
   </div>
-  <div class="prose prose max-w-none border-b border-grey-lighter py-8 dark:prose-dark sm:py-12">
+  <div class="prose prose max-w-none border-b border-grey-lighter py-4 dark:prose-dark sm:py-6">
       {% include_block page.body %}
   </div>
 </div>
