@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "site_settings",
     "project",
     "utils",
+    "experience",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",

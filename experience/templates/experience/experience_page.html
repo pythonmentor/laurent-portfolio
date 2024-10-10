@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block content %}
+
+<div class="pt-8 lg:pt-10">
+  <div class="border-b border-grey-lighter pb-8 sm:pb-12">
+    <!-- Conteneur pour logo et titre avec coins arrondis -->
+    <div class="flex justify-between items-center w-full p-4 bg-white">
+      <!-- Logo -->
+      <div class="rounded-full border border-black bg-white flex items-center">
+        {% if page.logo %}
+          {% image page.logo max-150x150 %}
+        {% endif %}
+      </div>
+      <!-- Titre centré -->
+      <div class="flex-1 flex justify-center">
+        <h2 class="block font-body text-3xl font-semibold leading-tight text-primary dark:text-white sm:text-4xl md:text-5xl">
+          {{ page.title }}
+        </h2>
+      </div>
+    </div>
+    <!-- Résumé -->
+    <p class="font-body font-light text-primary dark:text-white mt-4">
+      <a href="{{ page.url }}">{{ page.summary }}</a>
+    </p>
+  </div>
+  <!-- Contenu de la page -->
+  <div class="prose max-w-none border-b border-grey-lighter py-2 dark:prose-dark sm:py-3">
+    {% include_block page.body %}
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+
+{% load static wagtailimages_tags %}
+<div class="pt-2 pb-4">
+    <div class="mb-4 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
+      <span class="inline-block rounded-full px-4 py-1 font-body text-sm">
+        <div class="rounded-full border border-black">
+          {% if experience.logo %}
+              {% image experience.logo max-200x200 %}
+          {% endif %}
+        </div>
+      </span>
+    <span class="flex-1 pr-8">
+        <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
+            <a href="{{ experience.url }}">{{ experience.title }}</a>
+        </h4>
+        <div class="flex items-center pt-2 mb-5">
+            <p class="pr-2 font-body font-light text-primary dark:text-sm text-grey font-light">
+              <a href="{{ post.url }}">🗓️ {{ experience.date_in }} - {{ experience.date_out }}</a>
+            </p>
+        </div>
+
+        <p class="font-body font-light text-primary dark:text-white">
+          <a href="{{ experience.url }}">{{ experience.summary }}</a>
+        </p>
+
+    </span>
+    <div class="w-1/10 flex items-center justify-center">
+      <a href="{{ experience.url }}">
+        <img src="{% static 'img/chevron-right.png' %}" style="height: 24px; width: 24px;" class="mx-auto" alt="chevron right" />
+      </a>
+    </div>
+  </div>
+</div>
+
+

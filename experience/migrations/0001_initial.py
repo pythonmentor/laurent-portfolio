@@ -11,15 +11,27 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('wagtailcore', '0094_alter_page_locale'),
+        ('wagtailimages', '0026_delete_uploadedimage'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MiscPage',
+            name='ExperienceIndexPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('html_subtitle', models.TextField(blank=True, help_text='This can include Raw HTML. Be careful!', max_length=2000)),
+                ('summary', models.TextField(blank=True, max_length=500)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('wagtailcore.page',),
+        ),
+        migrations.CreateModel(
+            name='ExperiencePage',
+            fields=[
+                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('body', wagtail.fields.StreamField([('content', 0), ('image', 1), ('quote', 2), ('twitter_block', 4), ('code_block', 7), ('result_block', 8)], block_lookup={0: ('utils.models.UtilsCustomRichTextBlock', (), {}), 1: ('wagtail.images.blocks.ImageChooserBlock', (), {'template': 'blocks/image.html'}), 2: ('wagtail.blocks.BlockQuoteBlock', (), {'template': 'blocks/quote.html'}), 3: ('wagtail.blocks.CharBlock', (), {}), 4: ('wagtail.blocks.StructBlock', [[('text', 3)]], {'template': 'blocks/twitter_block.html'}), 5: ('wagtail.blocks.ChoiceBlock', [], {'choices': [('python', 'Python'), ('css', 'CSS'), ('html', 'HTML'), ('javascript', 'Javascript'), ('shell', 'Shell')], 'label': 'Language code'}), 6: ('wagtail.blocks.TextBlock', (), {'label': 'Source code'}), 7: ('wagtail.blocks.StructBlock', [[('language', 5), ('code', 6)]], {}), 8: ('utils.models.UtilsResultBlock', (), {})})),
+                ('logo', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
             ],
             options={
                 'abstract': False,
