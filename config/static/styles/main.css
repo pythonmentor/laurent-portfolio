@@ -1,6 +1,5 @@
 /* Caroussel */
 :root {
-    /* --color-elements: #065a68; */
     --color-elements: #00AAA1;
     --size: clamp(10rem, 1rem + 40vmin, 30rem);
     --gap: calc(var(--size) / 14);
@@ -70,7 +69,7 @@
         transform: translateX(var(--scroll-end));
     }
 }
-  
+
 @keyframes scroll-y {
     from {
         transform: translateY(var(--scroll-start));
@@ -94,6 +93,22 @@
     width: calc(var(--size) / 2.5);
     padding: calc(var(--size) / 20);
     aspect-ratio: 16/9;
+    margin-top: 10px;
+}
+
+.marquee img {
+    display: grid;
+    place-items: center;
+    width: calc(var(--size) - 60px);
+    fill: var(--color-elements);
+    padding: calc(var(--size) / 15);
+    margin-top: 15px;
+    border: var(--color-elements) 4px solid;
+}
+
+.marquee img {
+    width: calc(var(--size) / 2.5);
+    padding: calc(var(--size) / 20);
     margin-top: 10px;
 }
 

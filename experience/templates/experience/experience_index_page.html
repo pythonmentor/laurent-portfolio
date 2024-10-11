@@ -17,6 +17,10 @@
     </p>
   </div>
 
+  <div class="py-4 lg:py-10">
+      {% include 'includes/carrousel_simple.html' %}
+  </div>
+
   <div class="pt-4 lg:pt-6">
     {% for experience in posts %}
       {% include 'includes/experience_preview.html' with experience=experience %}
