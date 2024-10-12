@@ -98,19 +98,11 @@
 
 .marquee img {
     display: grid;
-    place-items: center;
-    width: calc(var(--size) - 60px);
-    fill: var(--color-elements);
-    padding: calc(var(--size) / 15);
     margin-top: 15px;
     border: var(--color-elements) 4px solid;
+    width: calc(var(--size) / 2.5);
 }
 
-.marquee img {
-    width: calc(var(--size) / 2.5);
-    padding: calc(var(--size) / 20);
-    margin-top: 10px;
-}
 
 .marquee,
 .marquee__group {
