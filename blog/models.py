@@ -12,6 +12,7 @@ from utils.models import (
     UtilsCodeBlock,
     UtilsResultBlock,
     UtilsCustomRichTextBlock,
+    UtilsVideoBlock,
 )
 
 
@@ -79,6 +80,12 @@ class BlogPage(Page):
                 "quote",
                 blocks.BlockQuoteBlock(
                     template="blocks/quote.html",
+                ),
+            ),
+            (
+                "video",
+                UtilsVideoBlock(
+                    template="blocks/video.html",
                 ),
             ),
             (

@@ -1,6 +1,7 @@
 from django.db import models
 from wagtail import blocks
 from wagtail.snippets.models import register_snippet
+from wagtail.embeds.blocks import EmbedBlock
 
 
 class UtilsCodeBlock(blocks.StructBlock):
@@ -69,6 +70,16 @@ class UtilsCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UtilsVideoBlock(blocks.StructBlock):
+    title = blocks.CharBlock(required=True)
+    video_url = EmbedBlock(required=True)
+
+    class Meta:
+        template = "blocks/video.html"  # Créez ce fichier template
+        icon = "media"
+        label = "Vidéo"
 
 
 class UtilsCustomRichTextBlock(blocks.RichTextBlock):
