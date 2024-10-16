@@ -1,6 +1,0 @@
-{% load wagtailimages_tags %}
-
-<h2>{{ self.title }}</h2>
-<video controls class="w-full h-auto my-2 rounded-lg" style="border-radius: 1em;">
-    <source src="{{ self.video_file.url }}" type="{{ self.video_file.file.content_type }}">
-</video>

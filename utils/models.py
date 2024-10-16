@@ -2,6 +2,8 @@ from django.db import models
 from wagtail import blocks
 from wagtail.snippets.models import register_snippet
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class UtilsCodeBlock(blocks.StructBlock):
@@ -73,11 +75,13 @@ class UtilsCategory(models.Model):
 
 
 class UtilsVideoBlock(blocks.StructBlock):
-    title = blocks.CharBlock(required=True)
-    video_url = EmbedBlock(required=True)
+    title = blocks.CharBlock(required=False)
+    video_url = EmbedBlock(required=False)
+    video_file = DocumentChooserBlock(required=False)
+    poster_image = ImageChooserBlock(required=False)
 
     class Meta:
-        template = "blocks/video.html"  # Créez ce fichier template
+        template = "blocks/video_block.html"
         icon = "media"
         label = "Vidéo"
 

@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+{% if self.title %}
+    <h3>{{ self.title }}</h3>
+{% endif %}
+
+{% if self.video_url %}
+    <!-- Vidéo intégrée depuis une plateforme externe -->
+    <div class="embed-video w-full h-auto my-2 rounded-lg" style="border-radius: 1em; overflow: hidden;">
+        {{ self.video_url }}
+    </div>
+{% elif self.video_file %}
+    <!-- Vidéo locale -->
+    <video controls autoplay loop muted 
+        preload="auto" 
+        poster="{% if self.poster_image %}{{ self.poster_image.url }}{% endif %}"
+        playsinline 
+        class="w-full h-auto my-2 rounded-lg" 
+        style="border-radius: 1em;">
+            <source src="{{ self.video_file.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+    </video>
+{% else %}
+    <p>No video available.</p>
+{% endif %}

@@ -83,9 +83,9 @@ class BlogPage(Page):
                 ),
             ),
             (
-                "video",
+                "video_block",
                 UtilsVideoBlock(
-                    template="blocks/video.html",
+                    template="blocks/video_block.html",
                 ),
             ),
             (

@@ -10,6 +10,7 @@ from utils.models import (
     UtilsCodeBlock,
     UtilsResultBlock,
     UtilsCustomRichTextBlock,
+    UtilsVideoBlock,
 )
 
 
@@ -31,6 +32,12 @@ class MiscPage(Page):
                 "image",
                 ImageChooserBlock(
                     template="blocks/image.html",
+                ),
+            ),
+            (
+                "video_block",
+                UtilsVideoBlock(
+                    template="blocks/video_block.html",
                 ),
             ),
             (
