@@ -13,8 +13,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import pymysql
+
+from config import BASE_DIR, env
+
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -91,14 +95,16 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.1/ref/settings/#database
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+DATABASES = {"default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3")}  # type: ignore
+
+if "mysql" in DATABASES["default"]["ENGINE"]:
+    pymysql.install_as_MySQLdb()
+    DATABASES["default"]["OPTIONS"] = {
+        "charset": "utf8mb4",
+        "init_command": "SET NAMES 'utf8mb4' COLLATE 'utf8mb4_unicode_ci', sql_mode='STRICT_TRANS_TABLES'",
     }
-}
 
 
 # Password validation
