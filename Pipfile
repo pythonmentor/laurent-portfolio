@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 wagtail = "*"
 django = "*"
+django-environ = "*"
+cryptography = "*"
+pymysql = "*"
 
 [dev-packages]
 
