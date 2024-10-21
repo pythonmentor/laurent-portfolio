@@ -158,7 +158,7 @@ EMAIL_SUBJECT_PREFIX = env(
 # The ADMIN_URL variable defines the custom URL for accessing the Django admin interface.
 # Configuring it via an environment variable helps obscure or make the admin URL less predictable (instead of the default /admin/ URL),
 # enhancing security by reducing the risk of automated attacks targeting the admin interface.
-ADMIN_URL = env("DJANGO_ADMIN_URL", "admin/")
+ADMIN_URL = env("DJANGO_ADMIN_URL", default="admin/")
 
 
 # Logging
